@@ -1,0 +1,81 @@
+Teamserver {
+    Host = "0.0.0.0"
+    Port = 40056
+
+    Build {
+        Compiler64 = "/usr/bin/x86_64-w64-mingw32-gcc"
+        Compiler86 = "/usr/bin/i686-w64-mingw32-gcc"
+        Nasm = "/usr/bin/nasm"
+    }
+}
+
+Operators {
+    user "operator" {
+        Password = "password"
+    }
+
+}
+
+Listeners {
+    Http {
+        Name         = "aws_profile_basic_listener - http"
+        Hosts        = [
+            "aws.amazon.com",
+        ]
+        HostBind     = "0.0.0.0"
+        HostRotation = "round-robin"
+        PortBind     = 443
+        PortConn     = 443
+        Secure       = false
+        KillDate     = "2024-01-02 12:00:00"
+        UserAgent    = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+
+        Uris = [
+	    "/s/ref=nb_sb_noss_1/167-3294888-0262949/field-keywords=books/"
+        ]
+
+	Headers = [
+	    "Accept: */*",
+	    "Accept-Encoding: deflate",
+	    "Accept-Language: en-US,en;q=0.5",
+	    "Connection: keep-alive",
+	    "Content-Type: text/plain;charset=UTF-8",
+	    "DNT: 1",
+	    "Host: d1.awsstatic.com",
+	    "Referer: https://aws.amazon.com/",
+	    "Sec-Fetch-Dest: image",
+	    "Sec-Fetch-Mode: no-cors",
+	    "Sec-Fetch-Site: cross-site",
+	    "Sec-GPC: 1",
+	    "TE: trailers",
+	]
+
+        Response {
+            Headers = [
+                "Content-Type: application/json; charset=utf-8",
+                "Server: AmazonS3",
+                "X-Content-Type-Options: nosniff",
+                "x-ms-environment: North Europe-prod-3,_cnsVMSS-6_26",
+		"x-amz-version-id 9WyIg8FlYqn7_n.kIpeoYfDeYklz_kld",
+                "x-ms-latency: 40018.2038",
+		"x-amz-cf-id: Rs3PGBOKy4y1hVEIgtjt4_qrba9q52DIOjIBtQEk-YSPwhzj7jHd8A==",
+		"via: 1.1 9dba3ae645587c3cf23f9d232c9cb4e8.cloudfront.net (CloudFront)",
+                "Connection: keep-alive"
+            ]
+        }
+    }
+}
+
+Demon {
+    Sleep = 5
+    Jitter = 0
+
+    TrustXForwardedFor = false
+
+    Injection {
+        Spawn64 = "C:\\Windows\\System32\\Werfault.exe"
+        Spawn32 = "C:\\Windows\\SysWOW64\\Werfault.exe"
+    }
+}
+
+
